@@ -151,12 +151,16 @@ uptime = str(uptime.stdout)
 uptime = uptime.split(": ", 1)[1]
 uptime = uptime.split(" \\", 1)[0]
 
-display_session = "xorg"
-display_session = run("echo $XDG_SESSION_TYPE", shell=True, stdout=PIPE)
-display_session = str(display_session.stdout)
-display_session = display_session.split("'", 1)[1]
-display_session = display_session.split("\\", 1)[0]
-print("Display session: "+display_session)
+if (distro!="macOS"):
+    display_session = "xorg"
+    display_session = run("echo $XDG_SESSION_TYPE", shell=True, stdout=PIPE)
+    display_session = str(display_session.stdout)
+    display_session = display_session.split("'", 1)[1]
+    display_session = display_session.split("\\", 1)[0]
+    print("Display session: "+display_session)
+else:
+    display_session = "XQuartz"
+    print("Display session: "+display_session)
 
 window_manager = "lightdm"
 window_manager = run("neofetch wm", shell=True, stdout=PIPE)

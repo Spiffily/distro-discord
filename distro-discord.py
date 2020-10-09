@@ -183,13 +183,13 @@ if de == "GNOME":
         print("Shell theme: "+shelltheme)
     except:
         shelltheme = "Default"
-
-icons = "Adwaita"
-icons = run("neofetch icons", shell=True, stdout=PIPE)
-icons = str(icons.stdout)
-icons = icons.split(": ", 1)[1]
-icons = icons.split(" [", 1)[0]
-print("Icon theme: "+icons)
+if (distro!="macOS"):
+    icons = "Adwaita"
+    icons = run("neofetch icons", shell=True, stdout=PIPE)
+    icons = str(icons.stdout)
+    icons = icons.split(": ", 1)[1]
+    icons = icons.split(" [", 1)[0]
+    print("Icon theme: "+icons)
 
 bigicon = distroicon
 smallicon = deicon

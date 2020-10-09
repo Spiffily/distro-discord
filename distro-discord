@@ -1,0 +1,58 @@
+#!/bin/bash
+
+distrodiscord=$HOME"/.local/share/distro-discord"
+
+# if [ $1 = "test" ]
+# then
+#   exit 0
+# fi
+
+# distro-discord test
+# if [ $? = 127 ]
+# then
+  sudo cp $distrodiscord/distro-discord /usr/bin
+  sudo chown root:root /usr/bin/distro-discord
+  sudo chmod 755 /usr/bin/distro-discord
+# fi
+
+neofetch
+if [ $? = 127 ]
+then
+  echo "Please install neofetch. It is a very required dependency."
+  echo
+  echo "INSTALLATION:"
+  echo "sudo apt install -y neofetch"
+  echo "sudo pacman -S neofetch"
+  echo "For other distros, please see your package manager's documentation."
+  exit 127
+fi
+
+echo "Path to files: "$distrodiscord
+
+if [ -d $distrodiscord ]
+then
+  cd $distrodiscord
+else
+  mkdir $distrodiscord
+  cd $distrodiscord
+  git clone https://github.com/Spiffily/distro-discord.git
+fi
+
+pip3 install pypresence
+git pull
+
+# if [ $stdout = "Already up to date." ]
+# then
+#   exit 0
+# else
+#   exit 1
+# fi
+
+echo
+if [ -x $distrodiscord/distro-discord.py ]
+then
+  python3 $distrodiscord/distro-discord.py
+else
+  chmod +x $distrodiscord/distro-discord.py
+  python3 $distrodiscord/distro-discord.py
+fi

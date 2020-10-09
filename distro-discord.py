@@ -14,6 +14,17 @@ import time
 icons="icons"
 # run("mkdir "+icons, shell=True)
 
+def connect():
+    while True:
+        print("Waiting for a connection to Discord...")
+        try:
+            RPC.connect() # Start the handshake loop
+            print("Connection found!")
+            break
+        except:
+            time.sleep(2)
+            continue
+
 distroicon = "tux"
 distro=run("neofetch distro", shell=True, stdout=PIPE)
 distro=str(distro.stdout).lower()
@@ -182,16 +193,22 @@ print("Distro: "+distro)
 print("DE: "+de)
 
 RPC = Presence(client_id)  # Initialize the Presence client
-RPC.connect() # Start the handshake loop
+connect()
+
+
 
 while True:  # The presence will stay on as long as the program is running
-    uptime = run("neofetch uptime", shell=True, stdout=PIPE)
-    uptime = str(uptime.stdout)
-    range_start = uptime.find("uptime: ") + 8
-    uptime = uptime.split(": ", 1)[1]
-    uptime = uptime.split(" \\", 1)[0]
+    try:
+        uptime = run("neofetch uptime", shell=True, stdout=PIPE)
+        uptime = str(uptime.stdout)
+        uptime = uptime.split(": ", 1)[1]
+        uptime = uptime.split(" \\", 1)[0]
 
-    print("Uptime: "+str(uptime))
+        print("Uptime: "+str(uptime))
 
-    RPC.update(details="Desktop: "+str(de), state="Uptime:   "+str(uptime), large_image=bigicon, large_text=themetooltip, small_image=smallicon, small_text=disptooltip) # Updates our presence
-    time.sleep(5) # Can only update rich presence every 15 seconds
+        RPC.update(details="Desktop: "+str(de), state="Uptime:   "+str(uptime), large_image=bigicon, large_text=themetooltip, small_image=smallicon, small_text=disptooltip) # Updates our presence
+        time.sleep(5) # Can only update rich presence every 15 seconds
+        continue
+    except:
+        print("Connection to Discord lost. Retrying...")
+        connect()

@@ -164,7 +164,7 @@ bigicon = distroicon
 smallicon = deicon
 # print("Big icon: "+bigicon)
 # print("Small icon: "+smallicon)
-if(de = "GNOME"):
+if(de == "GNOME"):
     themetooltip = "Theme: "+gtk+"    Shell: "+shelltheme+"      Icons: "+icons
 else:
     themetooltip = "Theme: "+gtk+"      Icons: "+icons

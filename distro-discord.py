@@ -163,12 +163,18 @@ print("Icon theme: "+icons)
 bigicon = distroicon
 smallicon = deicon
 # print("Big icon: "+bigicon)
-# print("Small icon: "+smallicon)
+# # print("Small icon: "+smallicon)
+# if(de == "GNOME"):
+#     themetooltip = "Theme: "+gtk+"    Shell: "+shelltheme+"      Icons: "+icons
+# else:
+#     themetooltip = "Theme: "+gtk+"      Icons: "+icons
+# disptooltip = "Display server: "+display_session+"   Window Manager: "+window_manager #Display tooltip
+
 if(de == "GNOME"):
-    themetooltip = "Theme: "+gtk+"    Shell: "+shelltheme+"      Icons: "+icons
+    themetooltip = "Theme: "+gtk+" | Shell: "+shelltheme+" | Icons: "+icons
 else:
-    themetooltip = "Theme: "+gtk+"      Icons: "+icons
-disptooltip = "Display server: "+display_session+"   Window Manager: "+window_manager #Display tooltip
+    themetooltip = "Theme: "+gtk+" | Icons: "+icons
+disptooltip = "Display server: "+display_session+" | Window Manager: "+window_manager #Display tooltip
 
 # INIT
 # client_id = "763805674240081960"  # Put your Client ID in here

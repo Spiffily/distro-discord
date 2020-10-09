@@ -165,12 +165,13 @@ window_manager = window_manager.split(": ", 1)[1]
 window_manager = window_manager.split(" ", 1)[0]
 print("Window Manager: "+window_manager)
 
-gtk = "Adwaita"
-gtk = run("neofetch theme", shell=True, stdout=PIPE)
-gtk = str(gtk.stdout)
-gtk = gtk.split(": ", 1)[1]
-gtk = gtk.split(" [", 1)[0]
-print("Gtk theme: "+gtk)
+if (distro!="macOS"):
+    gtk = "Adwaita"
+    gtk = run("neofetch theme", shell=True, stdout=PIPE)
+    gtk = str(gtk.stdout)
+    gtk = gtk.split(": ", 1)[1]
+    gtk = gtk.split(" [", 1)[0]
+    print("Gtk theme: "+gtk)
 
 if de == "GNOME":
     try:
@@ -200,8 +201,10 @@ smallicon = deicon
 #     themetooltip = "Theme: "+gtk+"      Icons: "+icons
 # disptooltip = "Display server: "+display_session+"   Window Manager: "+window_manager #Display tooltip
 
-if(de == "GNOME"):
+if (de == "GNOME"):
     themetooltip = "Theme: "+gtk+" | Shell: "+shelltheme+" | Icons: "+icons
+elif (distro=="mac"):
+    themetooltip = "Theme: Aqua"
 else:
     themetooltip = "Theme: "+gtk+" | Icons: "+icons
 disptooltip = "Display server: "+display_session+" | Window Manager: "+window_manager #Display tooltip

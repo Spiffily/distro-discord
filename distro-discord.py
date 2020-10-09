@@ -52,6 +52,10 @@ elif distro.count("ubuntu") > 0:
     distro="Ubuntu"
     distroicon = "ubuntu"
     client_id = "763930415454486568"
+elif distro.count("debian") > 0:
+    distro="Debian"
+    distroicon = "debian"
+    client_id = "764141309958815744"
 elif distro.count("gallium") > 0:
     distro="Gallium OS"
     distroicon = "gallium"
@@ -60,10 +64,14 @@ elif distro.count("arch") > 0:
     distro="Arch Linux"
     distroicon = "arch"
     client_id = "763930319686205460"
+elif distro.count("manjaro") > 0:
+    distro="Manjaro"
+    distroicon = "manjaro"
+    client_id = "764140080742268978"
 elif distro.count("gentoo") > 0:
     distro="Gentoo"
     distroicon = "gentoo"
-    client_id = "763805674240081960" #
+    client_id = "764142766816231454"
 elif distro.count("mint") > 0:
     distro="Linux Mint"
     distroicon = "linux-mint"
@@ -75,15 +83,23 @@ elif distro.count("fedora") > 0:
 elif distro.count("neon") > 0:
     distro="KDE Neon"
     distroicon = "neon"
-    client_id = "763805674240081960" #
+    client_id = "764143396293705769"
 elif distro.count("parrot") > 0:
     distro="Parrot OS"
     distroicon = "parrot"
-    client_id = "763805674240081960" #
+    client_id = "764143643480424508"
+elif distro.count("kali") > 0:
+    distro="Kali Linux"
+    distroicon = "kali"
+    client_id = "764141985778761739"
 elif distro.count("red") > 0:
     distro="Red Hat"
     distroicon = "redhat"
-    client_id = "763805674240081960" #
+    client_id = "764143053559693322"
+elif distro.count("mac") > 0 or distro.count("os x") > 0:
+    distro="macOS"
+    distroicon = "macos"
+    client_id = "764137939444826163"
 else:
     distro="Linux"
     distroicon = "tux"
@@ -122,6 +138,9 @@ elif de.count("i3") > 0:
 elif de.count("unity") > 0:
     de="Unity"
     deicon = "unity"
+elif de.count("aqua") > 0:
+    de="Aqua"
+    deicon = "aqua"
 else:
     de="bash"
     deicon = "bash"

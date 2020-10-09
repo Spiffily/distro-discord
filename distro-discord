@@ -2,18 +2,13 @@
 
 distrodiscord=$HOME"/.local/share/distro-discord"
 
-# if [ $1 = "test" ]
-# then
-#   exit 0
-# fi
-
-# distro-discord test
-# if [ $? = 127 ]
-# then
+if [ $1 = "install" ]
+then
   sudo cp $distrodiscord/distro-discord /usr/bin
   sudo chown root:root /usr/bin/distro-discord
   sudo chmod 755 /usr/bin/distro-discord
-# fi
+  exit 0
+fi
 
 neofetch
 if [ $? = 127 ]

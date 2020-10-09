@@ -183,6 +183,7 @@ if de == "GNOME":
         print("Shell theme: "+shelltheme)
     except:
         shelltheme = "Default"
+
 if (distro!="macOS"):
     icons = "Adwaita"
     icons = run("neofetch icons", shell=True, stdout=PIPE)
@@ -203,7 +204,7 @@ smallicon = deicon
 
 if (de == "GNOME"):
     themetooltip = "Theme: "+gtk+" | Shell: "+shelltheme+" | Icons: "+icons
-elif (distro=="mac"):
+elif (distro=="macOS"):
     themetooltip = "Theme: Aqua"
 else:
     themetooltip = "Theme: "+gtk+" | Icons: "+icons

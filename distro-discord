@@ -14,6 +14,30 @@ then
   exit 127
 fi
 
+python3 --version
+if [ $? = 127 ]
+then
+  echo "Please install python3. It is a very required dependency."
+  echo
+  echo "INSTALLATION:"
+  echo "sudo apt install -y python3"
+  echo "sudo pacman -S python3"
+  echo "For other distros, please see your package manager's documentation."
+  exit 127
+fi
+
+pip3 --version
+if [ $? = 127 ]
+then
+  echo "Please install pip3. It is a required dependency."
+  echo
+  echo "INSTALLATION:"
+  echo "sudo apt install -y python3-pip"
+  echo "sudo pacman -S python-pip"
+  echo "For other distros, please see your package manager's documentation."
+  exit 127
+fi
+
 echo "Path to files: "$distrodiscord
 
 if [ -d $distrodiscord ]

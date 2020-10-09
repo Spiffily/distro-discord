@@ -25,7 +25,7 @@ def connect():
             time.sleep(2)
             continue
 
-distroicon = "tux"
+distroicon = "linux"
 distro=run("neofetch distro", shell=True, stdout=PIPE)
 distro=str(distro.stdout).lower()
 if distro.count("pop!_os") > 0:
@@ -92,9 +92,9 @@ elif distro.count("kali") > 0:
     distro="Kali Linux"
     distroicon = "kali"
     client_id = "764141985778761739"
-elif distro.count("red") > 0:
+elif distro.count("red") > 0 or distro.count("rhel") > 0:
     distro="Red Hat"
-    distroicon = "redhat"
+    distroicon = "rhel"
     client_id = "764143053559693322"
 elif distro.count("mac") > 0 or distro.count("os x") > 0:
     distro="macOS"
@@ -102,7 +102,7 @@ elif distro.count("mac") > 0 or distro.count("os x") > 0:
     client_id = "764137939444826163"
 else:
     distro="Linux"
-    distroicon = "tux"
+    distroicon = "linux"
     client_id = "763805674240081960"
 
 deicon = "sh"
@@ -134,7 +134,7 @@ elif de.count("lxqt") > 0:
     deicon = "lxde"
 elif de.count("i3") > 0:
     de="i3"
-    deicon = "bash"
+    deicon = "sh"
 elif de.count("unity") > 0:
     de="Unity"
     deicon = "unity"
@@ -143,7 +143,7 @@ elif de.count("aqua") > 0:
     deicon = "aqua"
 else:
     de="bash"
-    deicon = "bash"
+    deicon = "sh"
 
 uptime = ":)"
 uptime = run("neofetch uptime", shell=True, stdout=PIPE)

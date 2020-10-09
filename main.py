@@ -46,8 +46,8 @@ elif distro.count("gallium") > 0:
     distroicon = "gallium"
     client_id = "763931542371827722"
 elif distro.count("arch") > 0:
-    distro="Arch"
-    distro = "arch"
+    distro="Arch Linux"
+    distroicon = "arch"
     client_id = "763930319686205460"
 elif distro.count("gentoo") > 0:
     distro="Gentoo"
@@ -118,18 +118,60 @@ else:
 uptime = ":)"
 uptime = run("neofetch uptime", shell=True, stdout=PIPE)
 uptime = str(uptime.stdout)
-range_start = uptime.find("uptime: ") + 8
 uptime = uptime.split(": ", 1)[1]
 uptime = uptime.split(" \\", 1)[0]
 
-print(icons)
+display_session = "xorg"
+display_session = run("echo $XDG_SESSION_TYPE", shell=True, stdout=PIPE)
+display_session = str(display_session.stdout)
+display_session = display_session.split("'", 1)[1]
+display_session = display_session.split("\\", 1)[0]
+print("Display session: "+display_session)
+
+window_manager = "lightdm"
+window_manager = run("neofetch wm", shell=True, stdout=PIPE)
+window_manager = str(window_manager.stdout)
+window_manager = window_manager.split(": ", 1)[1]
+window_manager = window_manager.split(" ", 1)[0]
+print("Window Manager: "+window_manager)
+
+gtk = "Adwaita"
+gtk = run("neofetch theme", shell=True, stdout=PIPE)
+gtk = str(gtk.stdout)
+gtk = gtk.split(": ", 1)[1]
+gtk = gtk.split(" [", 1)[0]
+print("Gtk theme: "+gtk)
+
+if de == "GNOME":
+    try:
+        shelltheme = "Default"
+        shelltheme = run("gsettings get org.gnome.shell.extensions.user-theme name", shell=True, stdout=PIPE)
+        shelltheme = str(shelltheme.stdout)
+        shelltheme = shelltheme.split("'", 1)[1]
+        shelltheme = shelltheme.split("'", 1)[0]
+        print("Shell theme: "+shelltheme)
+    except:
+        shelltheme = "Default"
+
+icons = "Adwaita"
+icons = run("neofetch icons", shell=True, stdout=PIPE)
+icons = str(icons.stdout)
+icons = icons.split(": ", 1)[1]
+icons = icons.split(" [", 1)[0]
+print("Icon theme: "+icons)
+
 bigicon = distroicon
 smallicon = deicon
-print("Big icon: "+bigicon)
-print("Small icon: "+smallicon)
+# print("Big icon: "+bigicon)
+# print("Small icon: "+smallicon)
+themetooltip = "Theme: "+gtk+"    Shell: "+shelltheme+"      Icons: "+icons
+disptooltip = "Display server: "+display_session+"   Window Manager: "+window_manager #Display tooltip
 
 # INIT
 # client_id = "763805674240081960"  # Put your Client ID in here
+print("Distro: "+distro)
+print("DE: "+de)
+
 RPC = Presence(client_id)  # Initialize the Presence client
 RPC.connect() # Start the handshake loop
 
@@ -140,9 +182,7 @@ while True:  # The presence will stay on as long as the program is running
     uptime = uptime.split(": ", 1)[1]
     uptime = uptime.split(" \\", 1)[0]
 
-    print("Distro: "+distro)
-    print("DE: "+de)
     print("Uptime: "+str(uptime))
 
-    RPC.update(details="Desktop: "+str(de), state="Uptime:   "+str(uptime), large_image=bigicon, small_image=smallicon) # Updates our presence
+    RPC.update(details="Desktop: "+str(de), state="Uptime:   "+str(uptime), large_image=bigicon, large_text=themetooltip, small_image=smallicon, small_text=disptooltip) # Updates our presence
     time.sleep(5) # Can only update rich presence every 15 seconds
